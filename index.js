@@ -27,9 +27,8 @@ monacoService.getPlaceList(placeListType)
   const count = Object.keys(placeListFiltered).length;
   console.log('Places filtered by type:', count);
   
-  let nearestPlaces = monacoService.getNearestPlace(placeListFiltered, originPosition);
-  const count2 = Object.keys(nearestPlaces).length;
-  console.log('nearest places: ', count2);
+  let nearestPlace = monacoService.getNearestPlace(placeListFiltered, originPosition);
+  console.log(nearestPlace);
 });
 
 console.log(

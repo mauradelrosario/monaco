@@ -42,18 +42,18 @@ import { computeDistance} from './utils.js';
 function getNearestPlace(placeList, currentPosition) {
   let shortestDistance = Number.MAX_VALUE;
 
-  let nearestPlaces = []
+  let nearestPlace = null
 
     for (const place of placeList) {
     if (place.GoogleData !== null && place.GoogleData.Position !== null) {
       const distance = computeDistance(currentPosition.Lat, currentPosition.Lng, place.GoogleData.Position.Lat, place.GoogleData.Position.Lng);
       if (distance < shortestDistance) {
-        nearestPlaces.push(place);
+        nearestPlace = place;
       }
     }
   }
 
-  return nearestPlaces;
+  return nearestPlace;
 }
 
 /**
