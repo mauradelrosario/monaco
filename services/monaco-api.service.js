@@ -47,9 +47,6 @@ export async function getAllPlaces() {
   
       return places;
     });
-
-    const count = Object.keys(placesFormatted).length;
-    console.log('All places: ', count);
   
     return placesFormatted;
     });

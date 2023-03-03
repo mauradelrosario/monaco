@@ -31,6 +31,16 @@ monacoService.getPlaceList(placeListType)
   console.log(nearestPlace);
 });
 
+getAllPlaces()
+  .then(places => {
+    const lastDay = monacoService.getDateToVisitAllPlace(places, new Date());
+    console.log(lastDay);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+
 console.log(
   `Veuillez rechercher le lieu le plus proche de la position suivante : Lat ${originPosition.Lat} Lng ${originPosition.Lng}. Pour plus d'information, lisez le README.md`
 );

@@ -1,5 +1,5 @@
 import { getAllPlaces } from './monaco-api.service.js';
-import { computeDistance} from './utils.js';
+import { computeDistance } from './utils.js';
 
 /**
  * Recupère le lieu le plus proche à vol d'oiseau par rapport au point définit par @currentPosition
@@ -112,11 +112,33 @@ async function getPlaceList(placeListType) {
  *    ]
  *  }
  * ]} placeList liste des lieux à visiter
- * @param {Date} startDate Date de début des visites
+ * @param { Date } startDate Date de début des visites
  * @returns {string} Date du dernier jour des visit au format suivant dd/MM/yyyy
  */
 function getDateToVisitAllPlace(placeList, startDate) {
-  // TODO
+  let numberOfDaysToAdd = null;
+  const workingDays = 5;
+  const placesVisitedByDay = 2;
+  const placesToVisitCount = Object.keys(placeList).length;
+  console.log('All places: ', placesToVisitCount);
+
+  numberOfDaysToAdd = (placesToVisitCount / placesVisitedByDay) + placesToVisitCount / (placesVisitedByDay * workingDays);  
+ console.log(numberOfDaysToAdd);
+  //Calculer la date
+   let startTime = startDate.getTime();
+   startTime += numberOfDaysToAdd * 24 * 60 * 60 * 1000;
+   const endDate = new Date(startTime);
+
+   //Formatter
+   const options = { 
+    day: '2-digit', 
+    month: '2-digit', 
+    year: '2-digit' 
+  };
+  
+  const formattedDate = endDate.toLocaleDateString('fr-FR', options);
+
+  return formattedDate;
 }
 
 export default {
